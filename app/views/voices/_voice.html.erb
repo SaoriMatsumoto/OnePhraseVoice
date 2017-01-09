@@ -1,0 +1,13 @@
+<li id="voice-<%= voice.id %>">
+    <%= link_to gravatar_for(voice.user, size: 50), voice.user %>
+    <span class="user"><%= link_to voice.user.name, voice.user %></span>
+    <span class="description"><%= audio_tag(voice.file.url, controls: true) %></span>
+    <span class="description"><%= voice.description %></span>
+    <span class="timestamp">
+        <%= time_ago_in_words(voice.created_at) %>前
+        <% if current_user == voice.user %>
+            <%= link_to "削除", voice, method: :delete,
+                                         data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+    </span>
+</li>

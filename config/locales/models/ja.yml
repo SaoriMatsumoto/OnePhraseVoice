@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      voice: ボイス
+    attributes:
+      user:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        location: 場所
+        profile: プロフィール
+        birthday: 生年月日
+      voice:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        file: ファイル
+        description: ボイスの説明

@@ -1,0 +1,9 @@
+<%= form_for(@voice) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+        <%= f.file_field :file %>
+        <p class="help-block">10秒以内のmp3ファイルを選択</p>
+        <%= f.text_area :description, placeholder: "どんなボイス？", rows: '3' %>
+    </div>
+    <%= f.submit "投稿する", class: "btn btn-primary" %>
+<% end %>
