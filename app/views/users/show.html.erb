@@ -3,7 +3,7 @@
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.voices.any? %>
-      <h3><%= @user.voices.count %>ボイス</h3>
+      <h3><%= @title %>(<%= @count %>)</h3>
       <ol class="voices">
         <%= render @voices %>
       </ol>

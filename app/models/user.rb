@@ -38,4 +38,16 @@ class User < ActiveRecord::Base
     def feed_items
         Voice.where(user_id: following_user_ids + [self.id])
     end
+    
+    has_many :favorites, foreign_key: 'user_id', dependent: :destroy
+    has_many :favorite_voices, through: :favorites, source: :voice
+    
+    def favorite(voice)
+       favorites.find_or_create_by(voice_id: voice.id) 
+    end
+    
+    def unfavorite(voice)
+       favorite = favorites.find_by(voice_id: voice.id)
+       favorite.destroy if favorite
+    end
 end

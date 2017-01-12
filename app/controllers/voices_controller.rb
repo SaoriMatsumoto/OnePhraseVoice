@@ -20,6 +20,19 @@ class VoicesController < ApplicationController
         redirect_to request.referrer || root_url
     end
     
+    def share
+       original = Voice.find(params[:id])
+       @voice = current_user.voices.build(original_id: original.id)
+       @voice.file = original.file
+       @voice.description = "#{original.user.name}さんのボイス \n  #{original.description}"
+        if @voice.save
+            flash[:success] = "シェアされました"
+            redirect_to current_user
+        else
+            redirect_to :back
+        end
+    end
+    
     private
     
     def voice_params

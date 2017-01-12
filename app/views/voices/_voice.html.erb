@@ -3,6 +3,7 @@
     <span class="user"><%= link_to voice.user.name, voice.user %></span>
     <span class="description"><%= audio_tag(voice.file.url, controls: true) %></span>
     <span class="description"><%= voice.description %></span>
+    <span class="description"><%= render 'voices/favorite_form', voice: voice %><%= render 'voices/share', voice: voice %></span>
     <span class="timestamp">
         <%= time_ago_in_words(voice.created_at) %>前
         <% if current_user == voice.user %>

@@ -11,12 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170109044806) do
+ActiveRecord::Schema.define(version: 20170112031508) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "voice_id"
+    t.text     "content"
+    t.integer  "read_flg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comments", ["user_id", "voice_id"], name: "index_comments_on_user_id_and_voice_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["voice_id"], name: "index_comments_on_voice_id"
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "voice_id"
-    t.integer  "read_flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,6 +67,7 @@ ActiveRecord::Schema.define(version: 20170109044806) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "file"
+    t.integer  "original_id"
   end
 
   add_index "voices", ["user_id", "created_at"], name: "index_voices_on_user_id_and_created_at"

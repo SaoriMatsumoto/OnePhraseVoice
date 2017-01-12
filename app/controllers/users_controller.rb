@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :followings, :followers]
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers, :favorites]
   before_action :only_current_user, only: [:edit, :update]
   
   def show
+    @title = 'Voice'
+    @count = @user.voices.count
     @voices = @user.voices.order(created_at: :desc)
   end
   
@@ -40,6 +42,13 @@ class UsersController < ApplicationController
   def followers
     @users = @user.follower_users
     render 'show_followers'
+  end
+  
+  def favorites
+    @title = 'Favorites'
+    @count = @user.favorite_voices.count
+    @voices = @user.favorite_voices
+    render 'show'
   end
   
   private

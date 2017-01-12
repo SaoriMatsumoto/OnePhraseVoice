@@ -1,0 +1,7 @@
+<span id="favorite_form-<%= voice.id %>">
+    <% if voice.favorite?(current_user) %>
+        <%= render 'voices/unfavorite', voice: voice %>
+    <% else %>
+        <%= render 'voices/favorite', voice: voice%>
+    <% end %>
+</span>

@@ -16,6 +16,11 @@
             フォロワー
             <%= @user.follower_users.count %>
         </a>
+        <a href="<%= favorites_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            スキ
+            <%= @user.favorite_voices.count %>
+        </a>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">プロフィール</div>
