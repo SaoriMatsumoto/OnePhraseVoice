@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112031508) do
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "voice_id"
-    t.text     "content"
-    t.integer  "read_flg"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comments", ["user_id", "voice_id"], name: "index_comments_on_user_id_and_voice_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-  add_index "comments", ["voice_id"], name: "index_comments_on_voice_id"
+ActiveRecord::Schema.define(version: 20170114031657) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id"

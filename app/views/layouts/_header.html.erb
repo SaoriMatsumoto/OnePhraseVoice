@@ -4,6 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><%= link_to "ボイス投稿", root_path %></li>
           <li><%= link_to "マイページ", current_user %></li>
           <li><%= link_to "ログアウト", logout_path, method: "delete" %></li>
         <% else %>
@@ -12,5 +13,7 @@
         <% end %>
       </ul>
     </nav>
+    </div>
+  </div>
   </div>
 </header>

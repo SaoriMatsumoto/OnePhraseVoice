@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   before_action :only_current_user, only: [:edit, :update]
   
   def show
-    @title = 'Voice'
-    @count = @user.voices.count
     @voices = @user.voices.order(created_at: :desc)
   end
   
@@ -15,8 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "登録が完了しました。1 Phrase Voiceへようこそ！"
-      redirect_to @user
+      flash[:success] = "登録が完了しました。ログインしてください。"
+      redirect_to login_path
     else
       render 'new'
     end  
@@ -45,10 +43,8 @@ class UsersController < ApplicationController
   end
   
   def favorites
-    @title = 'Favorites'
-    @count = @user.favorite_voices.count
     @voices = @user.favorite_voices
-    render 'show'
+    render 'show_favorites'
   end
   
   private

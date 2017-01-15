@@ -130,6 +130,8 @@ ja:
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
       other_than: は%{count}以外の値にしてください
+      size_too_big: のサイズが大きすぎます(%{file_size}以下に設定してください)
+      extension_whitelist_error: の種類が違います
     template:
       body: 次の項目を確認してください
       header:

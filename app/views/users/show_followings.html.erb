@@ -1,7 +1,7 @@
 <div class="row">
     <%= render 'aside' %>
     <div class="col-md-8">
-        <h3>フォローしている人</h3>
+        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>フォローしている人</h3>
         <% @user.following_users.each do |user| %>
             <div class="panel panel-default col-md-6">
             <div class="panel-body">
