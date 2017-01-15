@@ -13,4 +13,7 @@ class Voice < ActiveRecord::Base
   def favorite?(user)
     favorite_users.include?(user)
   end
+  
+  acts_as_taggable_on :labels
+  acts_as_taggable
 end

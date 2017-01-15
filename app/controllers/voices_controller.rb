@@ -36,6 +36,6 @@ class VoicesController < ApplicationController
     private
     
     def voice_params
-        params.require(:voice).permit(:file, :description)
+        params.require(:voice).permit(:file, :description, :tag_list)
     end
 end

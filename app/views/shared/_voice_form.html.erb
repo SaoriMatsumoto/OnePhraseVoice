@@ -4,6 +4,8 @@
         <%= f.file_field :file, accept: 'audio/*' %>
         <p class="help-block">300KB以内のmp3ファイルを選択してください</p>
         <%= f.text_area :description, placeholder: "どんなボイス？", rows: '3' %>
+        <%= f.label :tag_list, "タグ（カンマ区切り）" %>
+        <%= text_field_tag 'voice[tag_list]', @voice.tag_list.join(',') %>
     </div>
     <%= f.submit "投稿する", class: "btn btn-primary" %>
 <% end %>
