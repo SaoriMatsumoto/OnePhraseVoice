@@ -1,0 +1,15 @@
+<div class="row">
+    <%= render 'users/aside' %>
+    <div class="col-md-8">
+        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>スキと言っている人</h3>
+        <% @voice.favorite_users.each do |user| %>
+            <div class="panel panel-default col-md-6">
+            <div class="panel-body">
+                <%= gravatar_for user %>
+                <%= link_to user.name, user_path(user) %><br>
+                <%= user.profile %>
+            </div>
+            </div>
+        <% end %>
+    </div>
+</div>

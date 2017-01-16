@@ -1,7 +1,6 @@
-<span>
-    <% if voice.original_id.nil? %>
-        <%= link_to share_voice_path(voice), method: :post, data: { confirm: "シェアしますか？"} do %>
-            <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span>
-        <% end %>
+<% if voice.original_id.nil? %>
+    <%= link_to share_voice_path(voice), method: :post, data: { confirm: "シェアしますか？"} do %>
+        <span class="glyphicon glyphicon-retweet", aria-hidden="true"></span>
     <% end %>
-</span>
+    シェア&nbsp;
+<% end %>

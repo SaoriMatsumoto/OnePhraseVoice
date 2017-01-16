@@ -1,3 +1,4 @@
 <%= link_to voice_favorites_path(voice), method: :post, remote: true do %>
     <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
 <% end %>
+<%= link_to voice.favorite_users.count, favorites_user_voice_path(voice) %>スキ&nbsp;

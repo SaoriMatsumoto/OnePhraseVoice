@@ -1,6 +1,12 @@
 class VoicesController < ApplicationController
     before_action :logged_in_user, only: [:create]
     
+    def index
+        @voice = current_user.voices.build
+        @voices = Voice.tagged_with(params[:tag]).order(created_at: :desc)
+        render 'show_tag_list'
+    end
+    
     def create
         @voice = current_user.voices.build(voice_params)
         if @voice.save
@@ -31,6 +37,12 @@ class VoicesController < ApplicationController
         else
             redirect_to :back
         end
+    end
+    
+    def favorites_user
+        @user = current_user
+        @voice = Voice.find(params[:id])
+        render 'users/show_favorites_user'
     end
     
     private

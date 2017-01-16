@@ -1,7 +1,16 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header>
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <%= link_to "1 Phrase Voice", root_path, id: "logo" %>
-    <nav>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "1 Phrase Voice", root_path, id: "logo" %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "ボイス投稿", root_path %></li>
@@ -12,8 +21,7 @@
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>
       </ul>
-    </nav>
     </div>
   </div>
-  </div>
+</nav>
 </header>

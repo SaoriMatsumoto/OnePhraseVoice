@@ -50,4 +50,6 @@ class User < ActiveRecord::Base
        favorite = favorites.find_by(voice_id: voice.id)
        favorite.destroy if favorite
     end
+    
+    has_many :messages
 end

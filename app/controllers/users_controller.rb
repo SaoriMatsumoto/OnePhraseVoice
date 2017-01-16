@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
   
   def favorites
-    @voices = @user.favorite_voices
+    @voices = @user.favorite_voices.order(created_at: :desc)
     render 'show_favorites'
   end
   

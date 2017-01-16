@@ -24,6 +24,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+/* .glyphicon {
+  color: #ad002d;
+} */
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -46,6 +50,10 @@ h2 {
   color: #777;
 }
 
+h3 .glyphicon{
+  color: #ad002d;
+}
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -53,19 +61,24 @@ p {
 
 /* header */
 
+.navbar {
+  background-color: #fff;
+  border-color: #ad002d;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
+  font-family: 'Comic Sans MS', cursive;
   font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
+  color: #ad002d;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
 }
 
 #logo:hover {
-  color: #fff;
+  color: #ad002d;
   text-decoration: none;
 }
 
@@ -134,6 +147,9 @@ aside {
       margin-top: 0px;
     }
   }
+  .glyphicon {
+    color :#ad002d;
+  }
 }
 
 .gravatar {
@@ -157,10 +173,17 @@ aside {
   .description {
     display: block;
     margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
+  }
+  .icon-buttom {
+    display: block;
+    margin-left: 60px;
+    a { text-decoration: none; }
+  }
+  .icon{
+    a:link { color: #ad002d; }
+    a:visited { color: #ad002d; }
+    a:hover { color: #e86b79; }
+    a:active { color: #ad002d; }
   }
   .timestamp {
     color: $gray-light;
@@ -182,4 +205,15 @@ aside {
   .list-group {
     text-align: center;
   }
+  .popular-tag {
+    margin-top: 20px;
+  }
+}
+
+.label {
+  a:link { color: #ffffff; }
+  a:visited { color: #ffffff; }
+  a:hover { color: #cccccc; }
+  a:active { color: #ffffff; }
+  a { text-decoration: none; }
 }
