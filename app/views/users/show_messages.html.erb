@@ -1,0 +1,12 @@
+<div class="row">
+  <%= render 'aside' %>
+  <div class="col-md-8">
+      <h3><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>メッセージ</h3>
+        <% @messages.each do |message| %>
+        <div class="panel panel-default">
+          <div class="panel-heading"><%= link_to User.find(message.post_user_id).name, user_path(message.post_user_id) %></div>
+          <div class="panel-body"><%= message.message %></div>
+        </div>
+        <% end %>
+  </div>
+</div>

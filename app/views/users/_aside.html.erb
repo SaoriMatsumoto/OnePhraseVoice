@@ -21,6 +21,17 @@
             スキ
             <%= @user.favorite_voices.count %>
         </a>
+        <% if current_user == @user %>
+        <a href="<%= show_message_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            メッセージを見る
+        </a>
+        <% else %>
+        <a href="<%= message_form_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            メッセージを送る
+        </a>
+        <% end %>
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">プロフィール</div>

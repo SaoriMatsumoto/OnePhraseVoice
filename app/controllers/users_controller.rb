@@ -47,6 +47,25 @@ class UsersController < ApplicationController
     render 'show_favorites'
   end
   
+  def message_form
+    @user = User.find(params[:id])
+    render 'message_form'
+  end
+  
+  def create_message
+    @user = User.find(params[:id])
+    @message = @user.messages.build(message: params[:message])
+    @message.post_user_id = current_user.id
+    @message.save
+    render 'message_form'
+  end
+  
+  def show_message
+    @user = User.find(params[:id])
+    @messages = @user.messages
+    render 'show_messages'
+  end
+  
   private
   
   def user_params

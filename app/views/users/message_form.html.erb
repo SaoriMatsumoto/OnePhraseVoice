@@ -1,0 +1,10 @@
+<div class="row">
+  <%= render 'aside' %>
+  <div class="col-md-8">
+    <%= form_tag(create_message_user_path(@user), method: :post) do |f| %>
+        
+        <%= text_area_tag :message %>
+        <%= submit_tag "送信する", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

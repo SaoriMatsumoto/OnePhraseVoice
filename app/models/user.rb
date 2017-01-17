@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
     end
     
     def following?(other_user)
-       following_users.include?(other_user) 
+        following_users.include?(other_user) 
     end
     
     def feed_items
@@ -51,5 +51,5 @@ class User < ActiveRecord::Base
        favorite.destroy if favorite
     end
     
-    has_many :messages
+    has_many :messages, foreign_key: 'user_id'
 end

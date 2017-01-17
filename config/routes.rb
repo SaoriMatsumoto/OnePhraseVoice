@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :followings, :followers, :favorites, :show_message
+      get :followings, :followers, :favorites, :show_message, :message_form
       post :create_message
     end
   end
