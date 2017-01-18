@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :only_current_user, only: [:edit, :update]
   
   def show
-    @voices = @user.voices.order(created_at: :desc)
+    @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def new
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   end
   
   def favorites
-    @voices = @user.favorite_voices.order(created_at: :desc)
+    @voices = @user.favorite_voices.order(created_at: :desc).page(params[:page]).per(10)
     render 'show_favorites'
   end
   
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   
   def show_message
     @user = User.find(params[:id])
-    @messages = @user.messages.order(created_at: :desc)
+    @messages = @user.messages.order(created_at: :desc).page(params[:page]).per(10)
     render 'show_messages'
   end
   

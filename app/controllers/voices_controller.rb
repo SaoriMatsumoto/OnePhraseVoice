@@ -2,15 +2,14 @@ class VoicesController < ApplicationController
     before_action :logged_in_user, only: [:create]
     
     def index
-        @voice = current_user.voices.build(voice_params)
-        @voices = Voice.tagged_with(params[:tag]).order(created_at: :desc)
+        @voices = Voice.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
         render 'show_tag_list'
     end
     
     def show
         @voice = Voice.find(params[:id])
         @comment = Comment.new
-        @comments = @voice.comments.order(created_at: :desc)
+        @comments = @voice.comments.order(created_at: :desc).page(params[:page]).per(10)
     end
     
     def create
@@ -59,7 +58,7 @@ class VoicesController < ApplicationController
             flash[:success] = "コメントを送信しました。"
             redirect_to @voice
         else
-            @comments = @voice.comments.order(created_at: :desc)
+            @comments = @voice.comments.order(created_at: :desc).page(params[:page]).per(10)
             render 'show'
         end
     end
