@@ -1,0 +1,56 @@
+<aside class="col-md-4 col-md-pull-8">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <div class="list-group">
+        <a href="<%= followings_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            フォロー
+            <%= @user.following_users.count %>
+        </a>
+        <a href="<%= followers_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            フォロワー
+            <%= @user.follower_users.count %>
+        </a>
+        <a href="<%= favorites_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            スキ
+            <%= @user.favorite_voices.count %>
+        </a>
+        <% if current_user == @user %>
+        <a href="<%= show_message_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            メッセージを見る
+        </a>
+        <% else %>
+        <a href="<%= message_form_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+            メッセージを送る
+        </a>
+        <% end %>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">プロフィール</div>
+        <div class="panel-body">
+        <p>
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            <%= @user.profile %>
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+            <%= @user.location %>
+        </p>
+        <p>
+            <span class="glyphicon glyphicon-gift" aria-hidden="true"></span>
+            <%= @user.birthday %>
+        </p>
+        <% if current_user == @user %>
+            <p><%= link_to "プロフィールを編集する" , edit_user_path(@user) %></p>
+        <% end %>
+        </div>
+    </div>
+</aside>

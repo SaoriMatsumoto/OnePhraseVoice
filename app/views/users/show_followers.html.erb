@@ -1,8 +1,7 @@
 <div class="row">
-    <%= render 'aside' %>
-    <div class="col-md-8">
+    <div class="col-md-8 col-md-push-4">
         <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>フォローされている人</h3>
-        <% @user.follower_users.each do |user| %>
+        <% @users.each do |user| %>
             <div class="panel panel-default col-md-6">
             <div class="panel-body">
                 <%= gravatar_for user %>
@@ -11,5 +10,7 @@
             </div>
             </div>
         <% end %>
+        <%= paginate @users %>
     </div>
+    <%= render 'aside2' %>
 </div>

@@ -1,6 +1,5 @@
 <div class="row">
-  <%= render 'aside' %>
-  <div class="col-md-8">
+  <div class="col-md-8 col-md-push-4">
       <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>メッセージ一覧</h3>
         <% @messages.each do |message| %>
         <div class="media">
@@ -14,4 +13,5 @@
         <% end %>
         <%= paginate @messages %>
   </div>
+  <%= render 'aside2' %>
 </div>

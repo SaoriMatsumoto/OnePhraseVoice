@@ -47,6 +47,7 @@ class VoicesController < ApplicationController
     def favorites_user
         @user = current_user
         @voice = Voice.find(params[:id])
+        @users = @voice.favorite_users.order(created_at: :desc).page(params[:page]).per(10)
         render 'users/show_favorites_user'
     end
     

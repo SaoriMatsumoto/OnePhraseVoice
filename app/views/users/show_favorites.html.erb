@@ -1,6 +1,5 @@
 <div class="row">
-  <%= render 'aside' %>
-  <div class="col-md-8">
+  <div class="col-md-8 col-md-push-4">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.voices.any? %>
       <h3><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>スキなボイス</h3>
@@ -8,5 +7,7 @@
         <%= render @voices %>
       </ol>
     <% end %>
+    <%= paginate @voices %>
   </div>
+  <%= render 'aside2' %>
 </div>
