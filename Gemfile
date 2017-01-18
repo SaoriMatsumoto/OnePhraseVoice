@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "carrierwave"
 gem 'cloudinary'
 gem 'acts-as-taggable-on', '~> 3.4'
-
+gem 'kaminari'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

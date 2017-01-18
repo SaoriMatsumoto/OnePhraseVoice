@@ -1,10 +1,11 @@
 <div class="row">
   <%= render 'aside' %>
   <div class="col-md-8">
-    <%= form_tag(create_message_user_path(@user), method: :post) do |f| %>
-        
-        <%= text_area_tag :message %>
-        <%= submit_tag "送信する", class: "btn btn-default" %>
+    <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>メッセージを送る</h3>
+    <%= form_for(@message, url: create_message_user_path(@user)) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.text_area :message, rows: '10' %>
+        <%= f.submit "送信する", class: "btn btn-default" %>
     <% end %>
   </div>
 </div>

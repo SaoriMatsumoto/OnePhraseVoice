@@ -5,7 +5,8 @@
     <span class="description"><%= voice.description %></span>
     <span class="icon-buttom"><span class="icon"><%= render 'voices/favorite_form', voice: voice %>
                        <%= render 'voices/share', voice: voice %></span>
-                       <%= render 'voices/tag_list', tag_list: voice.tag_list %></span>
+                       <%= render 'voices/tag_list', tag_list: voice.tag_list %>
+                       <%= link_to "コメントを見る", voice_path(voice.id), class: "btn btn-default btn-sm" %></span>
     <span class="timestamp">
         <%= time_ago_in_words(voice.created_at) %>前
         <% if current_user == voice.user %>

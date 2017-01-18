@@ -21,3 +21,7 @@ ja:
         updated_at: 更新日時
         file: ファイル
         description: ボイスの説明
+      comment:
+        comment: コメント
+      message:
+        message: メッセージ

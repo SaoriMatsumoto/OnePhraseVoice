@@ -217,3 +217,9 @@ aside {
   a:active { color: #ffffff; }
   a { text-decoration: none; }
 }
+
+.media-body {
+  .timestamp {
+    color: $gray-light;
+  }
+}

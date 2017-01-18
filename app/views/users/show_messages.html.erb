@@ -1,11 +1,15 @@
 <div class="row">
   <%= render 'aside' %>
   <div class="col-md-8">
-      <h3><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>メッセージ</h3>
+      <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>メッセージ一覧</h3>
         <% @messages.each do |message| %>
-        <div class="panel panel-default">
-          <div class="panel-heading"><%= link_to User.find(message.post_user_id).name, user_path(message.post_user_id) %></div>
-          <div class="panel-body"><%= message.message %></div>
+        <div class="media">
+            <%= link_to gravatar_for(User.find(message.post_user_id), size: 50), User.find(message.post_user_id), class: "media-left" %>
+            <div class="media-body">
+                <h4 class="media-heading"><%= link_to User.find(message.post_user_id).name, user_path(message.post_user_id) %></h4>
+                <%= message.message %><br>
+                <span class="timestamp"><%= message.created_at %></span>
+            </div>
         </div>
         <% end %>
   </div>

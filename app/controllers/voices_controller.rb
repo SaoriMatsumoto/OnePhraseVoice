@@ -2,9 +2,15 @@ class VoicesController < ApplicationController
     before_action :logged_in_user, only: [:create]
     
     def index
-        @voice = current_user.voices.build
+        @voice = current_user.voices.build(voice_params)
         @voices = Voice.tagged_with(params[:tag]).order(created_at: :desc)
         render 'show_tag_list'
+    end
+    
+    def show
+        @voice = Voice.find(params[:id])
+        @comment = Comment.new
+        @comments = @voice.comments.order(created_at: :desc)
     end
     
     def create
@@ -32,7 +38,7 @@ class VoicesController < ApplicationController
        @voice.file = original.file
        @voice.description = "#{original.user.name}さんのボイス \n  #{original.description}"
         if @voice.save
-            flash[:success] = "シェアされました"
+            flash[:success] = "シェアされました。"
             redirect_to current_user
         else
             redirect_to :back
@@ -43,6 +49,19 @@ class VoicesController < ApplicationController
         @user = current_user
         @voice = Voice.find(params[:id])
         render 'users/show_favorites_user'
+    end
+    
+    def create_comment
+        @voice = Voice.find(params[:id])
+        @comment = current_user.comments.build(voice_id: @voice.id,comment: params[:comment][:comment])
+        @comment.save
+        if @comment.save
+            flash[:success] = "コメントを送信しました。"
+            redirect_to @voice
+        else
+            @comments = @voice.comments.order(created_at: :desc)
+            render 'show'
+        end
     end
     
     private

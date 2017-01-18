@@ -51,5 +51,7 @@ class User < ActiveRecord::Base
        favorite.destroy if favorite
     end
     
-    has_many :messages, foreign_key: 'user_id'
+    has_many :messages, foreign_key: 'user_id', dependent: :destroy
+    
+    has_many :comments, foreign_key: 'user_id', dependent: :destroy
 end

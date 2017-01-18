@@ -49,20 +49,27 @@ class UsersController < ApplicationController
   
   def message_form
     @user = User.find(params[:id])
+    @message = Message.new
     render 'message_form'
   end
   
   def create_message
     @user = User.find(params[:id])
-    @message = @user.messages.build(message: params[:message])
+    @message = @user.messages.build(message: params[:message][:message])
     @message.post_user_id = current_user.id
     @message.save
-    render 'message_form'
+    if @message.save
+      flash[:success] = "メッセージを送信しました。"
+      redirect_to message_form_user_path
+    else
+      render 'message_form'
+    end
+    
   end
   
   def show_message
     @user = User.find(params[:id])
-    @messages = @user.messages
+    @messages = @user.messages.order(created_at: :desc)
     render 'show_messages'
   end
   

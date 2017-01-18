@@ -16,4 +16,6 @@ class Voice < ActiveRecord::Base
   
   acts_as_taggable_on :labels
   acts_as_taggable
+  
+  has_many :comments, foreign_key: 'voice_id', dependent: :destroy
 end
