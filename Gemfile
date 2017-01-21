@@ -32,6 +32,7 @@ gem 'cloudinary'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
 gem "ransack"
+gem 'seed_dump'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
