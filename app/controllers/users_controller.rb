@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :followings, :followers, :favorites]
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers, :favorites,
+                                  :message_form, :create_message, :show_message]
   before_action :only_current_user, only: [:edit, :update]
   
   def show
@@ -48,13 +49,11 @@ class UsersController < ApplicationController
   end
   
   def message_form
-    @user = User.find(params[:id])
     @message = Message.new
     render 'message_form'
   end
   
   def create_message
-    @user = User.find(params[:id])
     @message = @user.messages.build(message: params[:message][:message])
     @message.post_user_id = current_user.id
     @message.save
@@ -64,12 +63,10 @@ class UsersController < ApplicationController
     else
       render 'message_form'
     end
-    
   end
   
   def show_message
-    @user = User.find(params[:id])
-    @messages = @user.messages.order(created_at: :desc).page(params[:page]).per(10)
+    @messages = @user.messages.order(created_at: :desc).page(params[:page]).per(5)
     render 'show_messages'
   end
   
@@ -78,7 +75,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation, :profile,
-                                 :location, :birthday)
+                                 :location, :birthday, :image, :image_cache)
   end
   
   def set_user

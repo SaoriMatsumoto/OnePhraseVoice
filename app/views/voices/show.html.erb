@@ -11,10 +11,18 @@
         <% end %>
         <h3><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>コメント一覧</h3>
         <% @comments.each do |comment| %>
-        <div class="media">
-            <%= link_to gravatar_for(User.find(comment.user_id), size: 50), User.find(comment.user_id), class: "media-left" %>
+        <div class="media">    
+            <% if comment.user.image.present? %>
+                <div class="media-left">
+                <%= image_tag comment.user.image.url, alt: comment.user.name, size: "50x50" %>
+                </div>
+            <% else %>
+                <div class="media-left">
+                <%= image_tag "no_image.jpg", alt: comment.user.name, size: "50x50" %>
+                </div>
+            <% end %>
             <div class="media-body">
-                <h4 class="media-heading"><%= link_to User.find(comment.user_id).name, user_path(comment.user_id) %></h4>
+                <h4 class="media-heading"><%= link_to comment.user.name, comment.user(comment.user_id) %></h4>
                 <%= comment.comment %><br>
                 <span class="timestamp"><%= comment.created_at %></span>
             </div>

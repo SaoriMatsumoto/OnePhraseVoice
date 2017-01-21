@@ -1,4 +1,8 @@
-<%= link_to gravatar_for(current_user, size: 50), current_user %>
+<% if current_user.image.present? %>
+    <%= image_tag current_user.image.url, alt: current_user.name, size: "50x50" %>
+<% else %>
+    <%= image_tag "no_image.jpg", alt: current_user.name, size: "50x50" %>
+<% end %>
 <h1><%= current_user.name %></h1>
 <span><%= link_to "プロフィールを見る", current_user %></span>
 <span><%= current_user.voices.count %>ボイス</span>

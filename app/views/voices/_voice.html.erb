@@ -1,8 +1,14 @@
 <li id="voice-<%= voice.id %>">
-    <%= link_to gravatar_for(voice.user, size: 50), voice.user %>
+    <% if voice.user.image.present? %>
+        <%= image_tag voice.user.image.url, alt: voice.user.name, size: "50x50" %>
+    <% else %>
+        <%= image_tag "no_image.jpg", alt: voice.user.name, size: "50x50" %>
+    <% end %>
     <span class="user"><%= link_to voice.user.name, voice.user %></span>
     <span class="description"><%= audio_tag(voice.file.url, controls: true) %></span>
-    <span class="description"><%= voice.description %></span>
+    <span class="description"><%= render 'voices/already_share' if voice.original_id.present? %>
+                              <%= link_to "#{voice.original.user.name}さんのボイス", voice_path(voice.original) if voice.original_id.present? %>
+                              <%= voice.description %></span>
     <span class="icon-buttom"><span class="icon"><%= render 'voices/favorite_form', voice: voice %>
                        <%= render 'voices/share', voice: voice %></span>
                        <%= render 'voices/tag_list', tag_list: voice.tag_list %>

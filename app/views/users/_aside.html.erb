@@ -1,7 +1,11 @@
 <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
+        <% if @user.image.present? %>
+            <%= image_tag @user.image.url, alt: @user.name %>
+        <% else %>
+            <%= image_tag "no_image.jpg", alt: @user.name %>
+        <% end %>
         <%= @user.name %>
       </h1>
     </section>

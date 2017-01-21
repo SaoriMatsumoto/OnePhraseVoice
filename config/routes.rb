@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post   'login',  to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   get    'taglist', to: 'voices#index'
+  get    'search', to: 'voices#search'
 
   resources :users do
     member do

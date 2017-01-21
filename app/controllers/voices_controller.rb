@@ -6,6 +6,11 @@ class VoicesController < ApplicationController
         render 'show_tag_list'
     end
     
+    def search
+        @q = Voice.search(params[:q])
+        @voices = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(10)
+    end
+    
     def show
         @voice = Voice.find(params[:id])
         @comment = Comment.new
@@ -35,10 +40,10 @@ class VoicesController < ApplicationController
        original = Voice.find(params[:id])
        @voice = current_user.voices.build(original_id: original.id)
        @voice.file = original.file
-       @voice.description = "#{original.user.name}さんのボイス \n  #{original.description}"
+       @voice.description = "#{original.description}"
         if @voice.save
             flash[:success] = "シェアされました。"
-            redirect_to current_user
+            redirect_to root_url
         else
             redirect_to :back
         end

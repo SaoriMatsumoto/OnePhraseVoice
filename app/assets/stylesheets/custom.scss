@@ -24,9 +24,6 @@ textarea {
   margin-bottom: 10px;
 }
 
-/* .glyphicon {
-  color: #ad002d;
-} */
 
 /* typography */
 
@@ -152,7 +149,7 @@ aside {
   }
 }
 
-.gravatar {
+img {
   float: left;
   margin-right: 10px;
 }
@@ -190,7 +187,8 @@ aside {
     display: block;
     margin-left: 60px;
   }
-  .gravatar {
+
+  img {
     float: left;
     margin-right: 10px;
     margin-top: 5px;
@@ -222,4 +220,15 @@ aside {
   .timestamp {
     color: $gray-light;
   }
+}
+
+hr {
+  color: #ad002d;
+}
+
+footer {
+    padding: 10px 0;
+    font-size: 93%;
+    text-align: center;
+    color: #666;
 }

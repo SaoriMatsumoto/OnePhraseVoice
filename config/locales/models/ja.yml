@@ -12,6 +12,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+        image: プロフィール写真
         location: 場所
         profile: プロフィール
         birthday: 生年月日

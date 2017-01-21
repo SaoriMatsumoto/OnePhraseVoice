@@ -27,9 +27,11 @@ gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem "carrierwave"
+gem 'rmagick'
 gem 'cloudinary'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
+gem "ransack"
 
 # Use Unicorn as the app server
 # gem 'unicorn'

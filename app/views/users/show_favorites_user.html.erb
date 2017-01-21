@@ -4,7 +4,11 @@
         <% @users.each do |user| %>
             <div class="panel panel-default col-md-6">
             <div class="panel-body">
-                <%= gravatar_for user %>
+                <% if user.image.present? %>
+                    <%= image_tag user.image.url, alt: user.name %>
+                <% else %>
+                    <%= image_tag "no_image.jpg", alt: user.name %>
+                <% end %>
                 <%= link_to user.name, user_path(user) %><br>
                 <%= user.profile %>
             </div>

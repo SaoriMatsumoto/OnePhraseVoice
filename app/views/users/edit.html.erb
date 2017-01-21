@@ -17,6 +17,10 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class: 'form-control' %>
             
+            <%= f.label :image %>
+            <%= f.file_field :image, class: 'form-control' %>
+            <%= f.hidden_field :image_cache %>
+            
             <%= f.label :location %>
             <%= f.text_field :location, class: 'form-control' %>
             
@@ -26,7 +30,7 @@
             <%= f.label :birthday %>
             <%= f.text_field :birthday, class: 'form-control', placeholder: '1980/01/01' %>
             
-            <%= f.submit "プロフィールを更新する", class: "btn btn-large btn-primary" %>
+            <%= f.submit "プロフィールを更新する", class: "btn btn-large btn-default" %>
         <% end %>
     </div>
 </div>

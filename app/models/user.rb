@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
     validates :profile, length: { maximum: 500 }, allow_blank: true
     validates :birthday, length: {maximum: 10 }, allow_blank: true
     
+    mount_uploader :image, ImageUploader
+    
     has_many :voices
     
     has_many :following_relationships, class_name:  "Relationship",
