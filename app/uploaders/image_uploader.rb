@@ -12,6 +12,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
   # storage :fog
 
+  def public_id
+    model.id
+  end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
