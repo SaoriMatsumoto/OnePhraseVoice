@@ -71,9 +71,9 @@ class VoicesController < ApplicationController
     
     def destroy_comment
         @voice = Voice.find(params[:id])
-        @comment = current_user.comments.find_by(id: params[:id])
+        @comment = current_user.comments.find_by(voice_id: params[:id])
         @comment.destroy
-        
+        redirect_to request.referrer || root_url
     end
     
     

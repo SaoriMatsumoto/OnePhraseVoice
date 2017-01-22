@@ -26,7 +26,7 @@
                 <%= comment.comment %><br>
                 <span class="timestamp"><%= comment.created_at %></span>
                 <% if current_user == comment.user %>
-                <%= link_to "削除", destroy_comment_voice_path, method: :delete,
+                <%= link_to "削除", comment, method: :delete,
                 data: { confirm: "本当に削除しますか？" } %>
                 <% end %>
             </div>
