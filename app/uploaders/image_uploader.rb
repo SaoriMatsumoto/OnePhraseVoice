@@ -34,11 +34,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process :resize_to_fill => [50, 50, gravity = ::Magick::CenterGravity]
   # end
-  if Rails.env.production?
-    process resize_to_limit: [100, 100]
-  else
-    process resize_to_fill(100, 100, gravity = ::Magick::CenterGravity)
-  end
+  #if Rails.env.production?
+  #  process resize_to_limit: [100, 100]
+  #else
+  #  process resize_to_fill(100, 100, gravity = ::Magick::CenterGravity)
+  #end
   #cl_image_tag("sample.jpg", :width=>100, :height=>100, :crop=>"fill")
   #process resize_to_fill(100, 100, gravity = ::Magick::CenterGravity)
   # Process files as they are uploaded:
