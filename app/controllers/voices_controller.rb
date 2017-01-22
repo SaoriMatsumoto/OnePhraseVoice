@@ -69,6 +69,14 @@ class VoicesController < ApplicationController
         end
     end
     
+    def destroy_comment
+        @voice = Voice.find(params[:id])
+        @comment = current_user.comments.find_by(id: params[:id])
+        @comment.destroy
+        
+    end
+    
+    
     private
     
     def voice_params

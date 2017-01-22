@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers, :favorites, :show_message, :message_form
       post :create_message
+      delete :destroy_message
     end
   end
   resources :voices do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
     member do
       get :favorites_user
       post :share, :create_comment
+      delete :destroy_comment
     end
   end
   resources :relationships, only: [:create, :destroy]
