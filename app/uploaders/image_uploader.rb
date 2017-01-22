@@ -35,7 +35,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fill => [50, 50, gravity = ::Magick::CenterGravity]
   # end
   if Rails.env.production?
-    process resize_to_fill: [100, 100, "Center"]
+    process resize_to_limit: [100, 100]
   else
     process resize_to_fill(100, 100, gravity = ::Magick::CenterGravity)
   end

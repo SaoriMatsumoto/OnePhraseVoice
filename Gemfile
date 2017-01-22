@@ -33,6 +33,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'kaminari'
 gem "ransack"
 gem 'seed_dump'
+gem 'mini_magick'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
