@@ -2,7 +2,8 @@ class Voice < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
-  validates :file, presence: true, file_size: {maximum: 300.kilobytes.to_i} 
+  validates :file, presence: true, file_size: {maximum: 300.kilobytes.to_i} , on: :create
+  validates :file, allow_blank: true , file_size: {maximum: 300.kilobytes.to_i} , on: :share
   validates :description, presence: true, length: { maximum: 140 }
   
   mount_uploader :file, VoiceUploader

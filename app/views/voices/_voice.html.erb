@@ -5,7 +5,12 @@
         <%= image_tag "no_image.jpg", alt: voice.user.name, size: "50x50" %>
     <% end %>
     <span class="user"><%= link_to voice.user.name, voice.user %></span>
-    <span class="description"><%= audio_tag(voice.file.url, controls: true) %></span>
+    <span class="description"><% if voice.original_id.present? %>
+                              <%= audio_tag(voice.original.file.url, controls: true) %>
+                              <% else %>
+                              <%= audio_tag(voice.file.url, controls: true) %>
+                              <% end%>
+                              </span>
     <span class="description"><%= render 'voices/already_share' if voice.original_id.present? %>
                               <%= link_to "#{voice.original.user.name}さんのボイス", voice_path(voice.original) if voice.original_id.present? %>
                               <%= voice.description %></span>
@@ -17,7 +22,7 @@
         <%= time_ago_in_words(voice.created_at) %>前
         <% if current_user == voice.user %>
             <%= link_to "削除", voice, method: :delete,
-                                         data: { confirm: "本当に削除しますか？" } %>
+                                         data: { confirm: "アカウントを削除すると、すべてのボイスが削除され、元に戻せません。本当に削除しますか？" } %>
         <% end %>
     </span>
 </li>

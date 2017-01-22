@@ -39,9 +39,8 @@ class VoicesController < ApplicationController
     def share
        original = Voice.find(params[:id])
        @voice = current_user.voices.build(original_id: original.id)
-       @voice.file = original.file
        @voice.description = "#{original.description}"
-        if @voice.save
+        if @voice.save(context: :share)
             flash[:success] = "シェアされました。"
             redirect_to root_url
         else
@@ -70,10 +69,9 @@ class VoicesController < ApplicationController
     end
     
     def destroy_comment
-        @voice = Voice.find(params[:id])
-        @comment = current_user.comments.find_by(voice_id: params[:id])
-        @comment.destroy
-        redirect_to request.referrer || root_url
+        Comment.destroy(params[:id])
+        flash[:success] = "削除されました。"
+        redirect_to request.referrer
     end
     
     

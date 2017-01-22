@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers, :favorites, :show_message, :message_form
       post :create_message
-      delete :destroy_message
     end
   end
   resources :voices do

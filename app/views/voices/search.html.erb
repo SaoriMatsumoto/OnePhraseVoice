@@ -3,7 +3,7 @@
         <h3><span class="glyphicon glyphicon-search" aria-hidden="true"></span>ボイスを検索</h3>
         <%= search_form_for @q, url: search_path do |f| %>
             <%= f.search_field :description_cont %>
-            <%= f.submit %>
+            <%= f.submit class: "btn btn-primary" %>
       　<% end %>
         <ol class="voices">
         <%= render @voices %>

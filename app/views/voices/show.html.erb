@@ -7,7 +7,7 @@
         <%= form_for(@comment, url: create_comment_voice_path(@voice)) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <%= f.text_area :comment, rows: '5' %>
-            <%= f.submit "コメントをする", class: "btn btn-default" %>
+            <%= f.submit "コメントをする", class: "btn btn-primary" %>
         <% end %>
         <h3><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>コメント一覧</h3>
         <% @comments.each do |comment| %>
@@ -24,11 +24,11 @@
             <div class="media-body">
                 <h4 class="media-heading"><%= link_to comment.user.name, comment.user(comment.user_id) %></h4>
                 <%= comment.comment %><br>
-                <span class="timestamp"><%= comment.created_at %></span>
+                <span class="timestamp"><%= comment.created_at %>
                 <% if current_user == comment.user %>
-                <%= link_to "削除", comment, method: :delete,
+                <%= link_to "削除", destroy_comment_voice_path(id: comment.id), method: :delete,
                 data: { confirm: "本当に削除しますか？" } %>
-                <% end %>
+                <% end %></span>
             </div>
         </div>
         <% end %>

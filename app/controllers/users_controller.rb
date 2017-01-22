@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :followings, :followers, :favorites,
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :favorites,
                                   :message_form, :create_message, :show_message]
-  before_action :only_current_user, only: [:edit, :update]
+  before_action :only_current_user, only: [:edit, :update, :destroy]
   
   def show
     @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def destroy
+    @user.destroy
+    flash[:success] = "削除されました。"
+    redirect_to root_path
   end
   
   def followings

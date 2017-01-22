@@ -5,7 +5,7 @@
     <%= form_for(@message, url: create_message_user_path(@user)) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.text_area :message, rows: '10' %>
-        <%= f.submit "送信する", class: "btn btn-default" %>
+        <%= f.submit "送信する", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
