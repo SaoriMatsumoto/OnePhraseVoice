@@ -20,5 +20,5 @@ class Voice < ActiveRecord::Base
   
   has_many :comments, foreign_key: 'voice_id', dependent: :destroy
   
-  belongs_to :original, class_name: "Voice"
+  belongs_to :original, class_name: "Voice", dependent: :destroy
 end

@@ -1,5 +1,5 @@
 class VoicesController < ApplicationController
-    before_action :logged_in_user, only: [:create]
+    before_action :logged_in_user
     
     def index
         @voices = Voice.tagged_with(params[:tag]).order(created_at: :desc).page(params[:page]).per(10)
@@ -33,6 +33,7 @@ class VoicesController < ApplicationController
         return redirect_to root_url if @voice.nil?
         @voice.destroy
         flash[:success] = "削除されました。"
+        Voice.where(original_id: @voice.id).destroy_all
         redirect_to request.referrer || root_url
     end
     

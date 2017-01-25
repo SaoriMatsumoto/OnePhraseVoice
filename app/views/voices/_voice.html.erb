@@ -22,7 +22,7 @@
         <%= time_ago_in_words(voice.created_at) %>前
         <% if current_user == voice.user %>
             <%= link_to "削除", voice, method: :delete,
-                                         data: { confirm: "アカウントを削除すると、すべてのボイスが削除され、元に戻せません。本当に削除しますか？" } %>
+                                         data: { confirm: "本当に削除しますか？" } %>
         <% end %>
     </span>
 </li>

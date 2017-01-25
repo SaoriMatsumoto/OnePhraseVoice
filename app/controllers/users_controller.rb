@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :favorites,
                                   :message_form, :create_message, :show_message]
-  before_action :only_current_user, only: [:edit, :update, :destroy]
+  before_action :only_current_user, only: [:edit, :update, :destroy, :show_message]
+  before_action :logged_in_user, only: [:show, :followings, :followers, :favorites, :message_form, :create_message]
   
   def show
     @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
@@ -14,8 +15,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "登録が完了しました。ログインしてください。"
-      redirect_to login_path
+      session[:user_id] = @user.id
+      flash[:success] = "登録が完了しました。"
+      redirect_to @user
     else
       render 'new'
     end  

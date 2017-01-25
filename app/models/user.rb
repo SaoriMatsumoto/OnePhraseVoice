@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     
     mount_uploader :image, ImageUploader
     
-    has_many :voices
+    has_many :voices, dependent: :destroy
     
     has_many :following_relationships, class_name:  "Relationship",
                                        foreign_key: "follower_id",

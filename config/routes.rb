@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get    'taglist', to: 'voices#index'
   get    'search', to: 'voices#search'
+  get    'ranking', to: 'rankings#show'
 
   resources :users do
     member do
