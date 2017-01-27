@@ -44,6 +44,17 @@
         </a>
         <% end %>
     </div>
+    <% if current_user == @user %>
+    <div class="list-group">
+        <a href="<%= comments_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            コメントのついたボイス
+            <% if @new_comments.present? %>
+                <span class="badge"><%= @new_comments.count %></span>
+            <% end %>
+        </a>
+    </div>
+    <% end %>
     <div class="panel panel-default">
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">

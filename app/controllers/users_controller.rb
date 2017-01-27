@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :favorites,
-                                  :message_form, :create_message, :show_message]
+                                  :message_form, :create_message, :show_message, :comments]
   before_action :only_current_user, only: [:edit, :update, :destroy, :show_message]
   before_action :logged_in_user, only: [:show, :followings, :followers, :favorites, :message_form, :create_message]
   
   def show
     @new_messages = Message.where(user_id: current_user.id, read_flg: 0)
     @new_followers = Relationship.where(followed_id: current_user.id, read_flg: 0)
+    @new_comments = Comment.where(voice_id: current_user.voice_id, read_flg: 0)
     @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
   end
   
@@ -80,6 +81,13 @@ class UsersController < ApplicationController
     @user.messages.update_all(read_flg: 1)
     @messages = @user.messages.order(created_at: :desc).page(params[:page]).per(5)
     render 'show_messages'
+  end
+  
+  def comments
+    @comments = Comment.where(voice_id: @user.voice_id)
+    @comments.update_all(read_flg: 1)
+    @for_user_comments = @comments.order(created_at: :desc).page(params[:page]).per(10)
+    render 'show_comments'
   end
   
   private
