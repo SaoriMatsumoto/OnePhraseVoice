@@ -20,6 +20,9 @@
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             フォロワー
             <%= @user.follower_users.count %>
+            <% if @new_followers.present? %>
+                <span class="badge"><%= @new_followers.count %></span>
+            <% end %>
         </a>
         <a href="<%= favorites_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
@@ -30,7 +33,9 @@
         <a href="<%= show_message_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
             メッセージを見る
-            
+            <% if @new_messages.present? %>
+            <span class="badge"><%= @new_messages.count %></span>
+            <% end %>
         </a>
         <% else %>
         <a href="<%= message_form_user_path(@user) %>" class="list-group-item">

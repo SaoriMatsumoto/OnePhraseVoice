@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   
   def show
     @new_messages = Message.where(user_id: current_user.id, read_flg: 0)
+    @new_followers = Relationship.where(followed_id: current_user.id, read_flg: 0)
     @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
   end
   
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
   end
   
   def followers
+    @user.follower_relationships.update_all(read_flg: 1)
     @users = @user.follower_users.order(created_at: :desc).page(params[:page]).per(10)
     render 'show_followers'
   end
