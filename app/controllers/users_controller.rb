@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers, :favorites,
-                                  :message_form, :create_message, :show_message, :comments]
+                                  :message_form, :create_message, :show_message, :comments, :posted_favorites]
   before_action :only_current_user, only: [:edit, :update, :destroy, :show_message]
   before_action :logged_in_user, only: [:show, :followings, :followers, :favorites, :message_form, :create_message]
   
@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @new_messages = Message.where(user_id: current_user.id, read_flg: 0)
     @new_followers = Relationship.where(followed_id: current_user.id, read_flg: 0)
     @new_comments = Comment.where(voice_id: current_user.voice_id, read_flg: 0)
+    @new_favorites = Favorite.where(voice_id: current_user.voice_id, read_flg: 0)
     @voices = @user.voices.order(created_at: :desc).page(params[:page]).per(10)
   end
   
@@ -58,6 +59,13 @@ class UsersController < ApplicationController
   def favorites
     @voices = @user.favorite_voices.order(created_at: :desc).page(params[:page]).per(10)
     render 'show_favorites'
+  end
+  
+  def posted_favorites
+    @favorites = Favorite.where(voice_id: current_user.voice_id)
+    @favorites.update_all(read_flg: 1)
+    @posted_favorites = @favorites.order(created_at: :desc).page(params[:page]).per(10)
+    render "show_posted_favorites"
   end
   
   def message_form

@@ -48,9 +48,16 @@
     <div class="list-group">
         <a href="<%= comments_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-            コメントのついたボイス
+            もらったコメント
             <% if @new_comments.present? %>
                 <span class="badge"><%= @new_comments.count %></span>
+            <% end %>
+        </a>
+        <a href="<%= posted_favorites_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            もらったスキ
+            <% if @new_favorites.present? %>
+                <span class="badge"><%= @new_favorites.count %></span>
             <% end %>
         </a>
     </div>
