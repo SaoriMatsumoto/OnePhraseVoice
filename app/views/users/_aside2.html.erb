@@ -10,8 +10,13 @@
         <%= @user.name %>
       </h1>
     </section>
-    <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
-       <%= link_to "新しいボイスを投稿する", root_path %></p>
+    <% if @user == current_user %>
+        <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+           <%= link_to "新しいボイスを投稿する", root_path %></p>
+    <% else %>
+        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        <%= link_to "プロフィール＆ボイス", @user %></p>
+    <% end %>
     <div class="list-group">
         <a href="<%= followings_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -83,4 +88,8 @@
         <% end %>
         </div>
     </div>
+    <% if @user != current_user %>
+        <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+           <%= link_to "新しいボイスを投稿する", root_path %></p>
+    <% end %>
 </aside>

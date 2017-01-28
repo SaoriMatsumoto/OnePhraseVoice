@@ -1,6 +1,5 @@
 <div class="row">
-  <%= render 'aside' %>
-  <div class="col-md-8">
+  <div class="col-md-8 col-md-push-4">
     <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>メッセージを送る</h3>
     <%= form_for(@message, url: create_message_user_path(@user)) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
@@ -8,4 +7,5 @@
         <%= f.submit "送信する", class: "btn btn-primary" %>
     <% end %>
   </div>
+  <%= render 'aside2' %>
 </div>

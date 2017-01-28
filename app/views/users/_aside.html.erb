@@ -10,8 +10,10 @@
         <%= @user.name %>
       </h1>
     </section>
+    <% if @user == current_user %>
     <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
        <%= link_to "新しいボイスを投稿する", root_path %></p>
+    <% end %>
     <div class="list-group">
         <a href="<%= followings_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -22,7 +24,7 @@
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             フォロワー
             <%= @user.follower_users.count %>
-            <% if @new_followers.present? %>
+            <% if @new_followers.present? && @user == current_user %>
                 <span class="badge"><%= @new_followers.count %></span>
             <% end %>
         </a>
@@ -88,5 +90,8 @@
         <p><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         <%= link_to "アカウントを削除する" , user_path(@user), method: :delete,
                                          data: { confirm: "アカウントを削除すると、すべてのボイスが削除され、元に戻せません。本当に削除しますか？" } %></p>
+    <% else %>
+        <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+        <%= link_to "新しいボイスを投稿する", root_path %></p>
     <% end %>
 </aside>
