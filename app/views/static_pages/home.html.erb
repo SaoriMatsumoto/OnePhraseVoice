@@ -6,6 +6,7 @@
             <section>
             <section class="voice_form">
                 <%= render 'shared/voice_form' %>
+                <%= render 'shared/links' %>
             </section>
         </aside>
         <div class="col-md-8">
@@ -19,5 +20,39 @@
         <h1>スキな「ボイス」と<br>つながろう</h1>
         
         <%= link_to "1 Phrase Voiceに登録する", signup_path, class: "btn btn-lg btn-primary" %>
+        <p><%= link_to "ログイン", login_path %>する</p>
+    </div>
+    <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h3><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>1PhraseVoice人気のボイス</h3>
+        <% @voices.each do |voice| %>
+        <ol class="voices">
+        <li id="voice-<%= voice.id %>">
+            <% if voice.user.image.present? %>
+                <%= image_tag voice.user.image.url, alt: voice.user.name, size: "50x50" %>
+            <% else %>
+                <%= image_tag "no_image.jpg", alt: voice.user.name, size: "50x50" %>
+            <% end %>
+            <span class="user"><%= voice.user.name %></span>
+            <span class="description"><% if voice.original_id.present? %>
+                                      <%= audio_tag(voice.original.file.url, controls: true) %>
+                                      <% else %>
+                                      <%= audio_tag(voice.file.url, controls: true) %>
+                                      <% end%>
+                                      </span>
+            <span class="description"><%= render 'voices/already_share' if voice.original_id.present? %>
+                                      <%= "#{voice.original.user.name}さんのボイス" if voice.original_id.present? %>
+                                      <%= voice.description %></span>
+            <span class="icon-buttom"><span class="icon">
+                                      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                                      <%= voice.favorite_users.count %>
+                                      </span></span>
+            <span class="timestamp">
+                <%= time_ago_in_words(voice.created_at) %>前
+            </span>
+        </li>
+        </ol>
+        <% end %>
+    </div>
     </div>
 <% end %>

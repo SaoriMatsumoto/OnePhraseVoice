@@ -11,15 +11,3 @@
 
     <%= f.submit "投稿する", class: "btn btn-primary" %>
 <% end %>
-<div class="panel panel-default popular-tag">
-  <div class="panel-heading">
-    <h3 class="panel-title">人気のタグ</h3>
-  </div>
-  <div class="panel-body">
-    <% ActsAsTaggableOn::Tag.most_used.each do |tag| %>
-      <span class="label label-default"><%= link_to "#{tag}", taglist_path(tag: tag.name) %></span>
-    <% end %>
-  </div>
-</div>
-<p><span class="glyphicon glyphicon-search" aria-hidden="true"></span><%= link_to "ボイスを検索する", search_path %></p>
-<p><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= link_to "人気のボイスを見る", ranking_path %></p>

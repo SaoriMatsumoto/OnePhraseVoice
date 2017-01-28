@@ -10,6 +10,8 @@
         <%= @user.name %>
       </h1>
     </section>
+    <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+       <%= link_to "新しいボイスを投稿する", root_path %></p>
     <div class="list-group">
         <a href="<%= followings_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -66,7 +68,6 @@
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">
         <p>
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
             <%= @user.profile %>
         </p>
         <p>
@@ -78,7 +79,8 @@
             <%= @user.birthday %>
         </p>
         <% if current_user == @user %>
-            <p><%= link_to "プロフィールを編集する" , edit_user_path(@user) %></p>
+            <p><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to "プロフィールを編集する" , edit_user_path(@user) %></p>
         <% end %>
         </div>
     </div>

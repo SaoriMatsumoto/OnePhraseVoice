@@ -10,6 +10,8 @@
         <%= @user.name %>
       </h1>
     </section>
+    <p><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span>
+       <%= link_to "新しいボイスを投稿する", root_path %></p>
     <div class="list-group">
         <a href="<%= followings_user_path(@user) %>" class="list-group-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -44,11 +46,28 @@
         </a>
         <% end %>
     </div>
+    <% if current_user == @user %>
+    <div class="list-group">
+        <a href="<%= comments_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            もらったコメント
+            <% if @new_comments.present? %>
+                <span class="badge"><%= @new_comments.count %></span>
+            <% end %>
+        </a>
+        <a href="<%= posted_favorites_user_path(@user) %>" class="list-group-item">
+            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            もらったスキ
+            <% if @new_favorites.present? %>
+                <span class="badge"><%= @new_favorites.count %></span>
+            <% end %>
+        </a>
+    </div>
+    <% end %>
     <div class="panel panel-default">
         <div class="panel-heading">プロフィール</div>
         <div class="panel-body">
         <p>
-            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
             <%= @user.profile %>
         </p>
         <p>

@@ -9,8 +9,8 @@
                 <% else %>
                     <%= image_tag "no_image.jpg", alt: user.name %>
                 <% end %>
-                <%= link_to user.name, user_path(user) %><br>
-                <%= user.profile %>
+                <p><%= link_to user.name, user_path(user) %></p>
+                <p><%= user.profile %></p>
             </div>
             </div>
         <% end %>

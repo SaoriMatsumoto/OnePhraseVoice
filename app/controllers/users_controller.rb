@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
   
   def followers
-    @user.follower_relationships.update_all(read_flg: 1)
+    @user.follower_relationships.update_all(read_flg: 1) if @user == current_user
     @users = @user.follower_users.order(created_at: :desc).page(params[:page]).per(10)
     render 'show_followers'
   end

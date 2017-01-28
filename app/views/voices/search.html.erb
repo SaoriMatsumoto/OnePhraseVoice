@@ -5,14 +5,19 @@
             <%= f.search_field :description_cont %>
             <%= f.submit class: "btn btn-primary" %>
       　<% end %>
+      　<% if @voices.present? %>
         <ol class="voices">
         <%= render @voices %>
         </ol>
         <%= paginate @voices %>
+        <% else %>
+        <div class="alert alert-danger" role="alert">該当するボイスはありません。</div>
+        <% end %>
     </div>
     <aside class="col-md-4 col-md-pull-8">
         <section class="user_info">
             <%= render 'shared/user_info' %>
+            <%= render 'shared/links' %>
         <section>
     </aside>
 </div>
