@@ -37,6 +37,10 @@ class UsersController < ApplicationController
   end
   
   def destroy
+    if @user.id == 1
+      flash[:danger] = "コンテストの審査を頂きありがとうございます。恐れ入りますが、サンプルアカウントは削除できません。"
+      return redirect_to root_url
+    end
     @user.destroy
     flash[:success] = "削除されました。"
     redirect_to root_path

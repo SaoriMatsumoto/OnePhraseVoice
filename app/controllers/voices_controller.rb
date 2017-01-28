@@ -29,8 +29,12 @@ class VoicesController < ApplicationController
     end
     
     def destroy
-        @voice = Voice.find(params[:id])
+        @voice = current_user.voices.find_by(id: params[:id])
         return redirect_to root_url if @voice.nil?
+        if current_user.id == 1
+        flash[:danger] = "コンテストの審査を頂きありがとうございます。恐れ入りますが、サンプルアカウントのボイスは削除できません。"
+        return redirect_to root_url
+        end
         @voice.destroy
         flash[:success] = "削除されました。"
         Voice.where(original_id: @voice.id).destroy_all
