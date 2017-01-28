@@ -29,7 +29,7 @@ class VoicesController < ApplicationController
     end
     
     def destroy
-        @voice = current_user.voices.find_by(id: params[:id])
+        @voice = Voice.find(params[:id])
         return redirect_to root_url if @voice.nil?
         @voice.destroy
         flash[:success] = "削除されました。"
